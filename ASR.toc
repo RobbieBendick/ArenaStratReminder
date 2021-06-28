@@ -1,0 +1,5 @@
+## Interface: 11306
+## Author: Mageiden / Robdog
+## Title: ArenaStratReminder
+## Notes: Reminds you of arena strategies when the gates open.
+core.lua

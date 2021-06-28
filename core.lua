@@ -23,7 +23,7 @@ local pala = "Paladin"
 
 local function updateHandler(self, event, ...)
     --if not in arena, exit function. only returns true after countdown.
-    if not IsActiveBattlefieldArena() and  then return end
+    if not IsActiveBattlefieldArena() then return end
 
     local arena_number_one = ArenaOneClass
     local arena_number_one = ArenaTwoClass
