@@ -10,8 +10,8 @@ PartyTwoClass = UnitClass("Party2")
 ArenaOneClass = UnitClass("Arena1")
 ArenaTwoClass = UnitClass("Arena2")
 ArenaThreeClass = UnitClass("Arena3")
-local startingRoom = false
-local inArenaMatch = false
+local starting_room = false
+local in_arena_match = false
 local message_sent = false
 local r = "Rogue"
 local m = "Mage"
@@ -36,15 +36,15 @@ local function eventHandler(self, event, ...)
     if event == "ZONE_CHANGED_NEW_AREA" then
         for 1,#arenas do
             if GetZoneText() == arenas[i] then 
-                startingRoom = true
+                starting_room = true
                 message_sent = false
-            else inArenaMatch = false
+            else in_arena_match = false
         end
     end 
     -- track when arena gates open
     if event == "CHAT_MSG_BG_SYSTEM_NEUTRAL" then
         arg1 = strlower(arg1)
-        if arg1 == "the arena battle has begun!" and startingRoom then
+        if arg1 == "the arena battle has begun!" and starting_room then
             --ARENA STARTED
 
             local arena_number_one = ArenaOneClass
@@ -68,10 +68,11 @@ local function eventHandler(self, event, ...)
                         else message = asAllyVsAllyStrat
                         end
                         if message ~= "" then
-                            for i=1,2 do
-                                print(message)
-                                message_sent = true
-                            end
+                            print(message)
+                            message_sent = true
+                        else message = "Unable to find a strat for your matchup"
+                            print(message)
+                            message_sent = true
                         end
                     end
                 end
@@ -80,8 +81,8 @@ local function eventHandler(self, event, ...)
             table.sort(enemy_arena_team)
             table.sort(arena_team)
 
-            startingRoom = false
-            inArenaMatch = true
+            starting_room = false
+            in_arena_match = true
 
             -- VS RMP
             if E_T_1 == m and E_T_2 == p and E_T_3 == r then
